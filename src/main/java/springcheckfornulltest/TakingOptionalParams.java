@@ -8,9 +8,9 @@ class TakingOptionalParams {
     @javax.annotation.CheckForNull private final TestInterface tester;
 
     // The following doesn't work as of Spring 5.1.6; Spring doesn't detect @CheckForNull as nullable.
-    TakingOptionalParams(@javax.annotation.CheckForNull @Qualifier("myExecutor") TestInterface tester) {
+    TakingOptionalParams(@javax.annotation.CheckForNull @Qualifier("myExecutor") TestInterface tester) { // BROKEN
         // The following works, and Spring passes null as the argument.
-//    TakingOptionalParams(@javax.annotation.Nullable @Qualifier("myExecutor") TestInterface tester) {
+//    TakingOptionalParams(@javax.annotation.Nullable @Qualifier("myExecutor") TestInterface tester) { // WORKING
         this.tester = tester;
     }
 
