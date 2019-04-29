@@ -1,25 +1,10 @@
-**/bin
-**/target/
+# Ignore Gradle project-specific cache directory
+.gradle/
 
-**/.DS_Store
-*.settings
-*.classpath
-*.project
-*~
-.metadata
-.recommenders
+# Ignore Gradle build output directory
+build/
 
-# Intellij
+bin/
+
 .idea/
-*.iml
-RemoteSystemsTempFiles/
-logs/
-
-# jenv Java environment manager local config
-.java-version
-
-# Python temporary/local files
-__pycache__/
-
-# Other generated files
-*.tmp
+.settings/
