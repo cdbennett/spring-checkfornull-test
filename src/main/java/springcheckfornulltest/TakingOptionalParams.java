@@ -5,12 +5,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 class TakingOptionalParams {
-    @javax.annotation.CheckForNull private final TestInterface tester;
+    private final TestInterface tester;
 
-    // The following doesn't work as of Spring 5.1.6; Spring doesn't detect @CheckForNull as nullable.
-    TakingOptionalParams(@javax.annotation.CheckForNull @Qualifier("myExecutor") TestInterface tester) { // BROKEN
-        // The following works, and Spring passes null as the argument.
-//    TakingOptionalParams(@javax.annotation.Nullable @Qualifier("myExecutor") TestInterface tester) { // WORKING
+    // As of Spring 5.1.6:
+    // - BROKEN: jsr305 CheckForNull (jsr305 3.0.1)
+    // - BROKEN: JetBrains Nullable (jetbrains-annotations 17.0.0)
+    // - OK: Spring Nullable (spring-core 5.1.9)
+    // - OK: jsr305 Nullable (jsr305 3.0.1)
+
+    TakingOptionalParams(
+//            @javax.annotation.CheckForNull // BROKEN
+//            @org.jetbrains.annotations.Nullable // BROKEN
+//            @org.springframework.lang.Nullable // WORKING
+            @javax.annotation.Nullable  // WORKING
+            @Qualifier("myExecutor") TestInterface tester) {
         this.tester = tester;
     }
 
